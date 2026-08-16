@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product Decision Map</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-title">產品決策地圖<span class="en">Product Decision Map</span></div>
+  <nav class="tabs">
+    <button class="tab-btn active" data-tab="capability">產品決策知識地圖<span class="en">Decision Capability Map</span></button>
+    <button class="tab-btn" data-tab="flow">數據分析與決策流程<span class="en">Analytics &amp; Decision Flow</span></button>
+  </nav>
+  <div class="topbar-actions">
+    <button id="export-btn" class="io-btn" title="把本機編輯紀錄存成檔案 Save local edits to a file">⬇ 匯出編輯 Export</button>
+    <button id="import-btn" class="io-btn" title="從檔案還原編輯紀錄 Restore edits from a file">⬆ 匯入編輯 Import</button>
+    <input id="import-file-input" type="file" accept="application/json" hidden>
+  </div>
+</header>
+
+<div class="filterbar">
+  <div class="filter-group">
+    <span class="filter-label">Status 狀態</span>
+    <button class="filter-btn active" data-filter-type="status" data-filter-value="all">全部 All</button>
+    <button class="filter-btn" data-filter-type="status" data-filter-value="done">✓ 已實踐 Done</button>
+    <button class="filter-btn" data-filter-type="status" data-filter-value="in-progress">◐ 進行中 In Progress</button>
+    <button class="filter-btn" data-filter-type="status" data-filter-value="todo">! 待補 To Do</button>
+    <button class="filter-btn" data-filter-type="status" data-filter-value="not-started">○ 尚未深入 Not Started</button>
+  </div>
+  <div class="filter-group">
+    <span class="filter-label">Priority 優先級</span>
+    <button class="filter-btn active" data-filter-type="priority" data-filter-value="all">全部 All</button>
+    <button class="filter-btn" data-filter-type="priority" data-filter-value="P0">P0</button>
+    <button class="filter-btn" data-filter-type="priority" data-filter-value="P1">P1</button>
+    <button class="filter-btn" data-filter-type="priority" data-filter-value="P2">P2</button>
+  </div>
+  <div class="filter-group legend">
+    <span class="legend-item"><span class="icon">✓</span>已實踐 Done</span>
+    <span class="legend-item"><span class="icon">◐</span>進行中 In Progress</span>
+    <span class="legend-item"><span class="icon">!</span>待補 To Do</span>
+    <span class="legend-item"><span class="icon">○</span>尚未深入 Not Started</span>
+    <span class="legend-item"><span class="icon warn">⚠</span>實戰踩坑 Hit in Production</span>
+  </div>
+</div>
+
+<main class="mapwrap">
+  <section id="panel-capability" class="mappanel active">
+    <div class="mapcanvas-outer">
+      <div id="capability-canvas" class="mapcanvas"></div>
+    </div>
+  </section>
+
+  <section id="panel-flow" class="mappanel">
+    <div class="mapcanvas-outer">
+      <div id="flow-canvas" class="mapcanvas"></div>
+    </div>
+  </section>
+</main>
+
+<aside id="drawer" class="drawer">
+  <div class="drawer-header">
+    <div>
+      <div id="drawer-status-line" class="drawer-status-line"></div>
+      <h2 id="drawer-title"></h2>
+    </div>
+    <button id="drawer-close" class="drawer-close" aria-label="close">×</button>
+  </div>
+  <div class="drawer-body" id="drawer-body"></div>
+</aside>
+<div id="drawer-backdrop" class="drawer-backdrop"></div>
+
+<script src="data.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
